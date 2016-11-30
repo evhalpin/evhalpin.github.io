@@ -12,22 +12,25 @@
 			margin: auto;
 		}
 	</style>
-
 	
 </head>
 <body>
 	<div class="main">
-	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
+		<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
 	</div>
 	<script>
 		window.onload = function() {
 			var frame = document.getElementById('my-iframe');
 			var lastChild = frame.contentDocument.body.lastElementChild;
 			console.log('lastChild:', lastChild);
-			debugger;
-			var div = document.createElement('div');
-			div.innerHTML = lastChild.outerHTML;
-			document.querySelector('.main').appendChild(div);
+			var wrapper = document.createElement('div');
+			var divLabel = document.createElement('span');
+			divLabel.textContent = "Last element of iframe: ";
+			wrapper.appendChild(divLabel);
+			var theElement = document.createElement('span');
+			theElement.innerHTML = lastChild.outerHTML;
+			wrapper.appendChild(theElement);
+			document.querySelector('.main').appendChild(wrapper);
 		};
 	</script>
 </body>
