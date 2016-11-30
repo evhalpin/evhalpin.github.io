@@ -22,10 +22,10 @@
 	<script>
 		window.onload = function() {
 			var frame = document.getElementById('my-iframe');
-			console.log(frame.contentWindow);
-			console.log(frame.contentDocument);
-			// var lastChild = frame.contentDocument.body.lastElementChild;
-			// console.log(lastChild);
+			// console.log(frame.contentWindow);
+			// console.log(frame.contentDocument);
+			var lastChild = frame.contentDocument.body.lastElementChild;
+			console.log(lastChild);
 		};
 	</script>
 </body>
