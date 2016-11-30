@@ -9,6 +9,7 @@ Hello, World
 	window.onload = function() {
 		window.addEventListener('message', sendInfo);
 		function sendInfo(event) {
+			console.log("got message")
 			console.log(event.data);
 			window.removeEventListener('message', sendInfo);
 			var lastElement = document.body.lastElementChild;
