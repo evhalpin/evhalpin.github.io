@@ -25,11 +25,11 @@
 			var frame = document.getElementById('my-iframe');
 			var lastChild = frame.contentDocument.body.lastElementChild;
 			console.log('lastChild:', lastChild);
-			var div = document.createElement('div');
-			var elementHTML = document.createElement('div');
-			elementHTML.textContent = lastChild;
-			div.appendChild(elementHTML);
-			document.querySelector('.main').appendChild(lastChild);
+			// var div = document.createElement('div');
+			// var elementHTML = document.createElement('div');
+			// elementHTML.innerHTML = lastChild.outerHTML;
+			// div.appendChild(elementHTML);
+			// document.querySelector('.main').appendChild(lastChild);
 		};
 	</script>
 </body>
