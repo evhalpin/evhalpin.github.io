@@ -17,14 +17,18 @@
 </head>
 <body>
 	<div class="main">
-	TESTING
+	NEW
 	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
 	</div>
 	<script>
 		window.onload = function() {
 			var frame = document.getElementById('my-iframe');
 			var lastChild = frame.contentDocument.body.lastElementChild;
-			console.log(lastChild);
+			console.log('lastChild:', lastChild);
+			var div = document.createElement('div');
+			var elementHTML = document.createElement('div');
+			elementHTML.textContent = lastChild;
+			div.appendChild(elementHTML);
 			document.querySelector('.main').appendChild(lastChild);
 		};
 	</script>
