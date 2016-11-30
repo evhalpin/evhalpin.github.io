@@ -10,7 +10,7 @@ Hello, World
 		window.addEventListener('message', sendInfo);
 		function sendInfo(event) {
 			console.log(event.data);
-			// window.removeEventListener('message', sendInfo);
+			window.removeEventListener('message', sendInfo);
 			var lastElement = document.body.lastElementChild;
 			var lastElementString = JSON.stringify(lastElement);
 			window.postMessage(lastElementString, 'https://evhalpin.github.io/iframe.html');
