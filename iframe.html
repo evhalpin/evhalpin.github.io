@@ -3,10 +3,19 @@
 <head>
 	<title>Challenge 2 - iFrame</title>
 	<meta charset="utf-8">
+	<style>
+		body {
+			text-align:center;
+		}
+		iframe {
+			margin: auto;
+		}
+	</style>
 </head>
 <body>
-	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="500"></iframe>
+	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
 	<script>
+		console.log("HERE");
 		var frame = document.querySelector('#my-iframe');
 
 		var lastChild = frame.contentDocument.body.lastElementChild;
