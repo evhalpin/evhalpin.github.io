@@ -17,7 +17,6 @@
 </head>
 <body>
 	<div class="main">
-	AGAIN with slice
 	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
 	</div>
 	<script>
@@ -27,10 +26,8 @@
 			console.log('lastChild:', lastChild);
 			debugger;
 			var div = document.createElement('div');
-			var elementHTML = document.createElement('div');
-			elementHTML.innerHTML = lastChild.outerHTML.slice(0);
-			div.appendChild(elementHTML);
-			document.querySelector('.main').appendChild(lastChild);
+			div.innerHTML = lastChild.outerHTML;
+			document.querySelector('.main').appendChild(div);
 		};
 	</script>
 </body>
