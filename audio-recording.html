@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Challenge 1 - Sound Recording</title>
+	<meta charset="utf-8">
+<style>
+	.main {
+		border: 5px solid #339900;
+		border-radius: 10px;
+		width: 80%;
+		margin: auto;
+		text-align: center;
+		margin-top: 10vh;
+		height: 60vh;
+		padding: 5vh 0;
+	}
+	.instructions p {
+		margin: .5vh;
+	}
+	button {
+		font-size: 1.5em;
+		margin: 10vh auto;
+		min-width: 10%;
+		display: block;
+		border-radius: 5px;
+		background-color: #E8ED64;
+		color: #339900;
+		border-style: outset;
+		border-color: #E8ED64;
+	}
+	button:disabled {
+		color: buttonface;
+	}
+</style>
+</head>
+<body>
+	<div class='main'>
+		<div class='instructions'>
+			<p>Press start to record your audio and have it played back for you!</p>
+			<p>You can then hear your recording again by pressing the play button, or press start to record another clip!</p>
+		</div>
+		<div class='record-tools'>
+			<button id='start-btn' disabled>Start!</button>
+			<audio controls autoplay id='the-audio'></audio>
+		</div>
+	</div>
+	<script>
+		/* The function that executes if getUserMedia (below) successfully:
+			1) gets the user's permission to access their mic
+			2) creates a MediaStream object */
+		function gotMedia(stream) {
+			// creates variables that point to html elements on the page
+			var btn = document.querySelector('#start-btn');
+			var audio = document.querySelector('#the-audio');
+
+			// disables/enables start button depending on whether audio is playing
+			audio.addEventListener('ended', function(event) {
+				console.log('playback ended');
+				btn.disabled = false;
+			});
+			audio.addEventListener('playing', function(event) {
+				btn.disabled = true;
+			});
+
+			// enables button
+			btn.disabled = false;
+
+			// creates the MediaRecorder object that will record the audio
+			var recorder = new MediaRecorder(stream);
+
+			// event listener & action-on-event for the start button
+			btn.addEventListener('click', start);
+			function start(event) {
+				// initialization
+				btn.disabled = true;
+				if (audio.src) {
+					audio.removeAttribute('src');
+				}
+				var firstBlob;
+				var clip;
+
+				// recorder event listener functions
+				recorder.onstart = function(event) {
+					console.log('recording started');
+					firstBlob = true;
+				};
+				recorder.ondataavailable = function(event) {
+					// stores the recording in 'clip' and stops the recorder 
+					// (ignoring the blob returned by the 'stop' method)
+					if (firstBlob === true) {
+						clip = event.data;
+						while (firstBlob === true) {
+							if (recorder.state !== 'inactive') {
+								recorder.stop();
+								firstBlob = false;
+							}
+						}
+					}
+				};
+				recorder.onstop = function(event) {
+					console.log('recording stopped');
+					audio.setAttribute('src', window.URL.createObjectURL(clip));
+					console.log('beginning playback');
+				};
+
+				// starts recording in 30 second blobs
+				recorder.start(30010);
+			}
+		}
+
+		/* Asks the user for permission to access their mic 
+		   (returns a promise) */
+		navigator.mediaDevices.getUserMedia({audio: true})
+			.then(gotMedia)
+			.catch(function(err) {
+				// Error is due to the user not giving permission
+				if (err.name === 'PermissionDeniedError' || err.name === 'PermissionDismissedError') {
+					console.log('You can\'t record audio without granting permission!');
+				}
+				// Other errors
+				else {
+					console.log('Error:', err);
+				}
+			});
+	</script>
+</body>
+</html>
