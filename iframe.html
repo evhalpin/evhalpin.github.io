@@ -17,6 +17,7 @@
 </head>
 <body>
 	<div class="main">
+	HELLO
 	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
 	</div>
 	<script>
@@ -24,7 +25,9 @@
 			var frame = document.getElementById('my-iframe');
 			var lastChild = frame.contentDocument.body.lastElementChild;
 			console.log(lastChild);
-			document.querySelector('.main').appendChild(lastChild);
+			var div = document.createElement('div');
+			div.innerHTML = lastChild;
+			document.querySelector('.main').appendChild(div);
 		};
 	</script>
 </body>
