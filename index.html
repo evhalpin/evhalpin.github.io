@@ -6,12 +6,12 @@
 Hello, World
 <a href='audio-recording.html'>Click here for my Audio Recorder!</a>
 <script>
-	window.onload = function() {
+	// window.onload = function() {
 		window.addEventListener('message', function(event) {
-			console.log('message received');
-			console.log(event);
+			console.log('message received', event.data);
+			window.postMessage('got it', 'https://evhalpin.github.io/');
 		});
-	};
+	// };
 </script>
 </body>
 </html>
