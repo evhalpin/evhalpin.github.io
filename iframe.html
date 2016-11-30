@@ -25,6 +25,7 @@
 			var frame = document.getElementById('my-iframe');
 			var lastChild = frame.contentDocument.body.lastElementChild;
 			console.log('lastChild:', lastChild);
+			debugger();
 			var div = document.createElement('div');
 			var elementHTML = document.createElement('div');
 			elementHTML.innerHTML = lastChild.outerHTML.slice(0);
