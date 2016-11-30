@@ -13,16 +13,19 @@
 	</style>
 </head>
 <body>
+	<div class="main">
 	<iframe id="my-iframe" src="https://evhalpin.github.io/" width="500" height="100"></iframe>
+	</div>
 	<script>
+		window.onload = function() {
 		console.log("HERE");
 		var frame = document.querySelector('#my-iframe');
-
 		var lastChild = frame.contentDocument.body.lastElementChild;
 		console.log("Last Child of iframe's body:", lastChild);
 		var div = document.createElement('div');
 		div.appendChild(lastChild);
-		document.body.appendChild(div);
+		document.querySelector('.main').appendChild(div);
+	}
 	</script>
 </body>
 </html>
