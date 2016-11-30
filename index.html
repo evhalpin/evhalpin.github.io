@@ -6,21 +6,5 @@
 	<div>Hello, World</div>
 	<a href='audio-recording.html'>Click here for my Audio Recorder!</a>
 	<a href='iframe.html'>Click here for my iframe!</a>
-	<script>
-		// window.onload = function() {
-			window.addEventListener('message', sendInfo);
-			function sendInfo(event) {
-				console.log("got message")
-				console.log(event.data);
-				window.removeEventListener('message', sendInfo);
-				console.log('here');
-				var lastElement = document.body.lastElementChild;
-				console.log(lastElement);
-				// var lastElementString = JSON.stringify(lastElement);
-				// window.postMessage(lastElement, '*');
-				window.postMessage(lastElement, '*');
-			}
-		// };
-	</script>
 </body>
 </html>
