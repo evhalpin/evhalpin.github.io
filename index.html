@@ -14,8 +14,10 @@
 				console.log(event.data);
 				window.removeEventListener('message', sendInfo);
 				var lastElement = document.body.lastElementChild;
+				console.log(lastElement);
 				// var lastElementString = JSON.stringify(lastElement);
 				// window.postMessage(lastElement, '*');
+				window.open().postMessage(lastElement, '*');
 			}
 		// };
 	</script>
