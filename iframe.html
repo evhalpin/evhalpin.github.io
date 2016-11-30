@@ -22,8 +22,9 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var frame = document.querySelector('#my-iframe');
+			var lastChild = frame.contentDocument.body.lastElementChild;
 			while (!lastChild) {
-				var lastChild = frame.contentDocument.body.lastElementChild;
+				lastChild = frame.contentDocument.body.lastElementChild;
 			}
 			console.log(lastChild);
 		});
