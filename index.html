@@ -5,5 +5,12 @@
 <body>
 Hello, World
 <a href='audio-recording.html'>Click here for my Audio Recorder!</a>
+<script>
+	window.onload = function() {
+		window.addEventListener('message', function(event) {
+			console.log('message received');
+		});
+	};
+</script>
 </body>
 </html>
